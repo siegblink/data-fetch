@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import List from './components/List'
+import useFetch from './hooks/useFetch'
 
 function App() {
+  const [data, stillFetching] = useFetch()
+  const style = {
+    marginLeft: '1.3rem',
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 style={style}>Silicon Valley Employees</h1>
+      {stillFetching ? (
+        <p style={style}>Loading data...</p>
+      ) : (
+        <List data={data} />
+      )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
